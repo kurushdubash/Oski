@@ -27,13 +27,13 @@ def get_football_info(audio):
 
 def gym_info(audio):
     if 'hours' in audio or 'close' in audio or 'does open':
-    	print('Sun: 8am - 1am')
-    	print('Mon: 6am - 1am')
-    	print('Tue: 6am - 1am')
-    	print('Wed: 6am - 1am')
-    	print('Thu: 6am - 1am')
-    	print('Fri: 6am - 11pm')
-    	print('Sat: 8am - 11pm')
+        print('Sun: 8am - 1am')
+        print('Mon: 6am - 1am')
+        print('Tue: 6am - 1am')
+        print('Wed: 6am - 1am')
+        print('Thu: 6am - 1am')
+        print('Fri: 6am - 11pm')
+        print('Sat: 8am - 11pm')
 
     if 'open' in audio or 'closed' in audio:
         time_info = datetime.today()
@@ -48,17 +48,17 @@ def gym_info(audio):
 
         hours = int(hours)
         if(day_of_week < 6 and hours >= 6):
-        	if(day_of_week == 4 and hours > 23):
-        		print("Gym closed!")
-        	else:
-        		print("Gym open!")
+            if(day_of_week == 4 and hours > 23):
+                print("Gym closed!")
+            else:
+                print("Gym open!")
         elif(day_of_week > 4 and hours >= 8):
             if(day_of_week == 5 and hours > 23):
-            	print("Gym closed!")
+                print("Gym closed!")
             else:
-            	print("Gym open!")
+                print("Gym open!")
         else:
-        	print("Gym closed")
+            print("Gym closed")
 
 def parse_audio(audio):
     if 'football' in audio:
@@ -67,11 +67,11 @@ def parse_audio(audio):
     if 'rsf' in audio or 'gym' in audio:
         gym_info(audio)
 
-
-transcribed_audio = get_audio().lower()
-print(transcribed_audio)
-parse_audio(transcribed_audio)
-
+def run():
+    transcribed_audio = get_audio().lower()
+    print(transcribed_audio)
+    parse_audio(transcribed_audio)
+    return transcribed_audio
 
 
 

@@ -1,4 +1,5 @@
 from flask import Flask, request
+from Oski import run
 app = Flask(__name__)
 
 @app.route("/")
@@ -8,7 +9,8 @@ def hello():
 @app.route("/api/ReadTextInput", methods=["POST"])
 def receive_cheep():
 	print(request.form)
-	return "Success!"
+	transcribed_audio = run()
+	return transcribed_audio
 
 
 @app.route("/api/StartRecording", methods=["POST"])
