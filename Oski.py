@@ -26,6 +26,15 @@ def get_football_info(audio):
     return football_dict
 
 def gym_info(audio):
+    if 'hours' in audio or 'close' in audio or 'does open':
+    	print('Sun: 8am - 1am')
+    	print('Mon: 6am - 1am')
+    	print('Tue: 6am - 1am')
+    	print('Wed: 6am - 1am')
+    	print('Thu: 6am - 1am')
+    	print('Fri: 6am - 11pm')
+    	print('Sat: 8am - 11pm')
+
     if 'open' in audio or 'closed' in audio:
         time_info = datetime.today()
         time = str(datetime.now().time())
@@ -50,15 +59,6 @@ def gym_info(audio):
             	print("Gym open!")
         else:
         	print("Gym closed")
-    if 'hours' in audio:
-    	print('Sun: 8am - 1am')
-    	print('Mon: 6am - 1am')
-    	print('Tue: 6am - 1am')
-    	print('Wed: 6am - 1am')
-    	print('Thu: 6am - 1am')
-    	print('Fri: 6am - 11pm')
-    	print('Sat: 8am - 11pm')
-
 
 def parse_audio(audio):
     if 'football' in audio:
