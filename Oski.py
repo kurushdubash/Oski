@@ -16,7 +16,8 @@ def get_audio():
         return transcribed_audio
     except LookupError:                            
         print("Could not understand audio") # speech is unintelligible 
-        return 'poop'
+        print("Trying again.")
+        return get_audio()
 
 def get_football_info(audio):
     football_api_url = 'http://api.sportsdatallc.org/ncaafb-t1/2014/REG/schedule.json?api_key=6r45ruu32nbydywtds97krap'
@@ -37,9 +38,6 @@ def gym_info(audio):
                 break
 
         hours = int(hours)
-        # print('hours:', hours)
-        # print('day of week', day_of_week)
-
         if(day_of_week < 6 and hours >= 6):
         	if(day_of_week == 4 and hours > 23):
         		print("Gym closed!")
@@ -52,9 +50,14 @@ def gym_info(audio):
             	print("Gym open!")
         else:
         	print("Gym closed")
-
-        # print(time)
-        # print(time_info.weekday())
+    if 'hours' in audio:
+    	print('Sun: 8am - 1am')
+    	print('Mon: 6am - 1am')
+    	print('Tue: 6am - 1am')
+    	print('Wed: 6am - 1am')
+    	print('Thu: 6am - 1am')
+    	print('Fri: 6am - 11pm')
+    	print('Sat: 8am - 11pm')
 
 
 def parse_audio(audio):
@@ -65,8 +68,8 @@ def parse_audio(audio):
         gym_info(audio)
 
 
-transcribed_audio = get_audio()
-print(transcribed_audio.capitalize())
+transcribed_audio = get_audio().lower()
+print(transcribed_audio)
 parse_audio(transcribed_audio)
 
 
