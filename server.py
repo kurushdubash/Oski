@@ -28,6 +28,8 @@ def get_question():
 def receive_recording_cue():
 	print(request.form)
 	transcribed_audio = get_audio().capitalize()
+	while(transcribed_audio == ''):
+		transcribed_audio = get_audio.capitalize()
 	print(transcribed_audio)
 	found_answer = answer(transcribed_audio)
 	url_speech = text_to_voice_url(found_answer)

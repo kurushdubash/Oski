@@ -124,8 +124,10 @@ def get_time():
     return str(hours) + " " + minutes
 
 def hey_oski(audio):
-	if 'hey' in audio or 'oski' in audio:
-    return "Test"
+    if 'hey' in audio or 'oski' in audio:
+        return "Hey Kurush, you're an idiot"
+    return 'h'
+
 def text_to_voice_url(answer_to_say):
     speak = ''
     for letter in answer_to_say:
@@ -148,8 +150,9 @@ def parse_audio(audio):
         return get_date()
     if 'time' in audio:
         return get_time()
-    if  'hey' in audio or 'oski' in audio:
-    	return hey_oski(audio)
+    if 'Hey' in audio or 'oski' in audio:
+        return hey_oski(audio)
+    return 'I was no help'
 
 def answer(audio):
     return parse_audio(audio) 
