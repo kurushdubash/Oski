@@ -27,9 +27,9 @@ def get_question():
 @app.route("/api/StartRecording", methods=["POST"])
 def receive_recording_cue():
 	print(request.form)
-	# transcribed_audio = get_audio().capitalize()
-	# print(transcribed_audio)
-	found_answer = answer(answer_output)
+	transcribed_audio = get_audio().capitalize()
+	print(transcribed_audio)
+	found_answer = answer(transcribed_audio)
 	url_speech = text_to_voice_url(found_answer)
 	print(found_answer)
 	return render_template('oski_answer.html', name=transcribed_audio, oski_answer=found_answer, speak=url_speech)

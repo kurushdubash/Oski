@@ -78,13 +78,16 @@ def get_gym_schedule():
 def gym_open_or_closed(hours, day_of_week):
     """ Uses current time, and determines if the Gym is currently open or not.
     Returns True for open, and false for closed"""
-    if(day_of_week < 6 and hours >= 6):
+    print(hours)
+    print(day_of_week)
+    if(day_of_week < 6 and hours >= 6 and day_of_week != 5):
         if(day_of_week == 4 and hours > 23):
             return False
         else:
             return True
     elif(day_of_week > 4 and hours >= 8):
-        if(day_of_week == 5 and hours > 23):
+        print
+        if(day_of_week == 5 and hours >= 23):
             return False
         else:
             return True
@@ -120,6 +123,9 @@ def get_time():
                 break
     return str(hours) + " " + minutes
 
+def hey_oski(audio):
+	if 'hey' in audio or 'oski' in audio:
+    return "Test"
 def text_to_voice_url(answer_to_say):
     speak = ''
     for letter in answer_to_say:
@@ -142,6 +148,8 @@ def parse_audio(audio):
         return get_date()
     if 'time' in audio:
         return get_time()
+    if  'hey' in audio or 'oski' in audio:
+    	return hey_oski(audio)
 
 def answer(audio):
     return parse_audio(audio) 

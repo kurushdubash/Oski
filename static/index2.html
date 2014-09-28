@@ -1,67 +1,89 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <!-- Oksi, your Bear-ific Sidekick
-        Created by Kurush Dubash and Hassaan Shakeel
-        September 27, 2014 -->
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-        <meta charset="utf-8">
+
+<html lang="en">
+
+<head>
+<!-- 
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+ -->
+    <title>Oski - Your Bear-ific sidekick</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/grayscale.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+    <!-- Navigation -->
+    
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            
+            <!-- /.navbar-collapse -->
+
+
+    <!-- Intro Header -->
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h1 class="brand-heading">Oski</h1>
+                        <p class="intro-text">An intelligent Berkeley personal assistant</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+<!--         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title> Oksi, your bear-ific Sidekick</title>
         <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
+<!--         <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css"> -->
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
-    </head>
-    <body bgcolor="#F4FA58" text="#0101DF">
+
+<!--     <body bgcolor="#F4FA58" text="#0101DF"> -->
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
         <!-- Add your site or application content here -->
         <center>
-            <h1><b>Welcome to Oski! </b></h1> 
+<!--             <h1><b>Welcome to Oski! </b></h1> 
             <h3><i> Your Bear-ific Sidekick! </i></h3>
-            <img src="http://cdn0.sbnation.com/imported_assets/419167/oski_092609_0438.jpg" style="width:538;height:359">
-        <style type="text/css"> 
-
-   .styled-button-9 {
-    background: #00A0D1;
-    background: -moz-linear-gradient(top,#00A0D1 0%,#008DB8 100%);
-    background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#00A0D1),color-stop(100%,#008DB8));
-    background: -webkit-linear-gradient(top,#00A0D1 0%,#008DB8 100%);
-    background: -o-linear-gradient(top,#00A0D1 0%,#008DB8 100%);
-    background: -ms-linear-gradient(top,#00A0D1 0%,#008DB8 100%);
-    background: linear-gradient(top,#00A0D1 0%,#008DB8 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00A0D1',endColorstr='#008DB8',GradientType=0);
-    padding:8px 20px;
-    color:#cfebf3;
-    font-family:'Helvetica Neue',sans-serif;
-    font-size:13px;
-    border-radius:40px;
-    -moz-border-radius:40px;
-    -webkit-border-radius:40px;
-    border:1px solid #095B7E
-}
-             
-</style>
-        <br><br></br></br>
+            <img src="http://cdn0.sbnation.com/imported_assets/419167/oski_092609_0438.jpg" style="width:538;height:359"> -->
 <!--         <form action='/api/ReadTextInput' method="POST">
             <b>Voice Request:</b>
             <input name="name" type="text" >
             <input type="submit" />
         </form>
         <br></br> -->
-        <form action='/api/StartRecording' method="POST">
+<!--         <form action='/api/StartRecording' method="POST">
             <button onclick = "start_Recording()">Ask Oski Now! </button>
-        </form>
+        </form> -->
 
 
 <h1><div id="transcript"> </div></h1>
@@ -69,14 +91,14 @@
 <div id="answer"> </div>
 <div id="instructions">&nbsp;</div>
 <p id="controls">
-            <input type="submit" id="start_button" class="styled-button-9" value="Ask Oski Now!" />
-            <!-- <button onclick = "start_Recording()" id="start_button">Ask Oski Now! </button>
-     -->
+            <!-- <input type="submit" id="start_button" class="btn btn-circle page-scroll" class="styled-button-9" value="Ask Oski Now!" /> -->
+            <button onclick = "start_Recording()" class="btn btn-circle page-scroll" id="start_button">Ask Oski Now! </button>
+    
     <!-- <button id="start_button">Click to Start</button> -->
 </p>
 
 
-
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
 <script type="text/javascript">
 
@@ -171,23 +193,14 @@
 </script>
 
 
-        </br></br>
-        <p> Oski is built by Kurush Dubash and Hassaan Shakeel. </p>
-        </center>
+        </br><br></br></br>
+        <p> Oski is built by Kurush Dubash and Hassaan Shakeel. <br><br>
+            ENJOY! </br></br> </p>
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');
-        </script>
-    </body>
+
+
+
+</body>
+
 </html>
