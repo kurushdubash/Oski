@@ -24,12 +24,14 @@ def get_audio():
         return get_audio()
 
 def get_football_info(audio):
+    """ GETs College Football JSON data, and returns the dictionary """
     football_api_url = 'http://api.sportsdatallc.org/ncaafb-t1/2014/REG/schedule.json?api_key=6r45ruu32nbydywtds97krap'
     football_data = requests.get(football_api_url)
     football_dict = football_data.json()
     return football_dict
 
 def gym_info(audio):
+    """ Listens to audio, and returns either the Gym Schedule, or whether the Gym is open or closed """
     if 'hours' in audio or ('when' in audio and 'close' in audio):
         return get_gym_schedule()
 
@@ -48,32 +50,45 @@ def gym_info(audio):
         
         result_text = " Open" if result else " Closed"
         return "The Gym is" + result_text
+def bear_walk(audio):
+    """ Listens to the audio, and returns the phone number of Bear Walk"""
+    if 'bear' in audio or 'walk' in audio:
+        return 'Contact Bear Walk at 510 642 9255'
+
+def bear_trasit(audio):
+    """ Listens to the audio, and returns the phone number of Bear Walk"""
+    if 'bear' in audio or 'walk' in audio:
+        return 'Contact Bear Walk at 510 642 9255'
+
 
 def get_gym_schedule():
-	return 'Sun: 8am - 1am\n' + 'Mon: 6am - 1am\n' + 'Tue: 6am - 1am\n' + 'Wed: 6am - 1am\n' + 'Thu: 6am - 1am\n' + 'Fri: 6am - 11pm\n' + 'Sat: 8am - 11pm\n'
+    """ Returns the string containing the GYM week schedule """
+    return 'Sun: 8am - 1am\n' + 'Mon: 6am - 1am\n' + 'Tue: 6am - 1am\n' + 'Wed: 6am - 1am\n' + 'Thu: 6am - 1am\n' + 'Fri: 6am - 11pm\n' + 'Sat: 8am - 11pm\n'
 
 def gym_open_or_closed(hours, day_of_week):
-        if(day_of_week < 6 and hours >= 6):
-            if(day_of_week == 4 and hours > 23):
-                return False
-            else:
-                return True
-        elif(day_of_week > 4 and hours >= 8):
-            if(day_of_week == 5 and hours > 23):
-                return False
-            else:
-                return True
-        else:
+    """ Uses current time, and determines if the Gym is currently open or not.
+    Returns True for open, and false for closed"""
+    if(day_of_week < 6 and hours >= 6):
+        if(day_of_week == 4 and hours > 23):
             return False
+        else:
+            return True
+    elif(day_of_week > 4 and hours >= 8):
+        if(day_of_week == 5 and hours > 23):
+            return False
+        else:
+            return True
+    else:
+        return False
 
 def text_to_voice_url(answer_to_say):
-	speak = ''
-	for letter in answer_to_say:
-		if(letter == ' '):
-			speak = speak +'%20'
-		else:
-			speak = speak + letter
-	return 'http://tts-api.com/tts.mp3?q=' + speak
+    speak = ''
+    for letter in answer_to_say:
+        if(letter == ' '):
+            speak = speak +'%20'
+        else:
+            speak = speak + letter
+    return 'http://tts-api.com/tts.mp3?q=' + speak
 
 def parse_audio(audio):
     if 'football' in audio:
@@ -81,6 +96,8 @@ def parse_audio(audio):
         print(get_football_info(audio))
     if 'rsf' in audio or 'gym' in audio:
         return gym_info(audio)
+    if 'bear' in audio or 'walk' in audio:
+        return bear_walk(audio)
 
 def answer(audio):
     return parse_audio(audio) 
