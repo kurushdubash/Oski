@@ -17,7 +17,8 @@ def receive_recording_cue():
 	print(request.form)
 	transcribed_audio = get_audio().capitalize()
 	found_answer = answer(transcribed_audio)
-	return render_template('oski_answer.html', name=transcribed_audio, oski_answer=found_answer)
+	url_speech = text_to_voice_url(found_answer)
+	return render_template('oski_answer.html', name=transcribed_audio, oski_answer=found_answer, speak=url_speech)
 
 if __name__ == "__main__":
 	app.run(debug=True)

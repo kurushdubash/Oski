@@ -26,9 +26,8 @@ def get_football_info(audio):
     return football_dict
 
 def gym_info(audio):
-    audio = audio + '<br>'
     if 'hours' in audio or 'close' in audio:
-        return audio + get_gym_schedule()
+        return get_gym_schedule()
 
     if 'open' in audio or 'closed' in audio:
         time_info = datetime.today()
@@ -44,7 +43,7 @@ def gym_info(audio):
         result = gym_open_or_closed(hours, day_of_week)
         
         result_text = " Open" if result else " Closed"
-        return audio + "<br> Gym" + result_text
+        return "The Gym is" + result_text
 
 def get_gym_schedule():
 	return 'Sun: 8am - 1am<br>' + 'Mon: 6am - 1am<br>' + 'Tue: 6am - 1am<br>' + 'Wed: 6am - 1am<br>' + 'Thu: 6am - 1am<br>' + 'Fri: 6am - 11pm<br>' + 'Sat: 8am - 11pm<br>'
@@ -62,6 +61,13 @@ def gym_open_or_closed(hours, day_of_week):
                 return True
         else:
             return False
+
+def text_to_voice_url(answer_to_say):
+	speak = ''
+	for word in answer_to_say:
+		speak = speak + word + '%20'
+	return 'http://tts-api.com/tts.mp3?q=' + speak[:len(speak) - 3]
+
 
 def parse_audio(audio):
     if 'football' in audio:
