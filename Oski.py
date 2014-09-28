@@ -29,7 +29,7 @@ def gym_info(audio):
     audio = audio + '<br>'
     if 'hours' in audio or 'close' in audio:
         return audio + get_gym_schedule()
-        
+
     if 'open' in audio or 'closed' in audio:
         time_info = datetime.today()
         time = str(datetime.now().time())
@@ -70,11 +70,8 @@ def parse_audio(audio):
     if 'rsf' in audio or 'gym' in audio:
         return gym_info(audio)
 
-def run():
-    transcribed_audio = get_audio().lower()
-    print(transcribed_audio)
-    transcribed_audio = parse_audio(transcribed_audio.capitalize())
-    return transcribed_audio 
+def answer(audio):
+    return parse_audio(audio) 
 
 
 

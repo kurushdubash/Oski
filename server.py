@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-from Oski import run
+from Oski import *
 app = Flask(__name__)
 
 @app.route("/")
@@ -15,8 +15,9 @@ def receive_cheep():
 @app.route("/api/StartRecording", methods=["POST"])
 def receive_recording_cue():
 	print(request.form)
-	transcribed_audio = run()
-	return render_template('oski_answer.html', name=transcribed_audio)
+	transcribed_audio = get_audio().capitalize()
+	answer = answer(transcribed_audio)
+	return render_template('oski_answer.html', name=transcribed_audio, oski_answer=answer)
 
 if __name__ == "__main__":
 	app.run(debug=True)
