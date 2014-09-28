@@ -9,8 +9,7 @@ def hello():
 @app.route("/api/ReadTextInput", methods=["POST"])
 def receive_cheep():
 	print(request.form)
-	
-	return transcribed_audio
+	return "Sucess"
 
 
 @app.route("/api/StartRecording", methods=["POST"])
