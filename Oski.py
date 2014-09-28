@@ -91,6 +91,35 @@ def gym_open_or_closed(hours, day_of_week):
     else:
         return False
 
+def get_date():
+    time_info = datetime.today()
+    return time_info.strftime("%A %d. %B %Y")
+
+def get_time():
+    time_info = str(datetime.today());
+    for char in str(time_info):
+        if(char == ' '):
+            time_info = time_info[1:]
+            break
+        else:
+            time_info = time_info[1:]
+    hours = ''
+    for char in time_info:
+        if(char != ':'):
+            hours = hours + char
+            time_info = time_info[1:]
+        else:
+            break
+        if (int(hours) > 12):
+            hours = int(hours) - 12
+        minutes = ''
+        for char in time_info:
+            if(char != ':'):
+                minutes = minutes + char
+            else: 
+                break
+    return str(hours) + " " + minutes
+
 def text_to_voice_url(answer_to_say):
     speak = ''
     for letter in answer_to_say:
@@ -101,9 +130,6 @@ def text_to_voice_url(answer_to_say):
     return 'http://tts-api.com/tts.mp3?q=' + speak
 
 def parse_audio(audio):
-    if 'football' in audio:
-        print("true")
-        print(get_football_info(audio))
     if 'rsf' in audio or 'gym' in audio:
         return gym_info(audio)
     if 'bear' in audio or 'walk' in audio:
@@ -112,7 +138,10 @@ def parse_audio(audio):
         return next_football_game(audio)
     if 'library' in audio:
         return library_hours(audio)
-    
+    if 'date' in audio or 'today' in audio:
+        return get_date()
+    if 'time' in audio:
+        return get_time()
 
 def answer(audio):
     return parse_audio(audio) 
