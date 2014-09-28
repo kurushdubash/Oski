@@ -26,15 +26,10 @@ def get_football_info(audio):
     return football_dict
 
 def gym_info(audio):
-    if 'hours' in audio or 'close' in audio or 'does open':
-        print('Sun: 8am - 1am')
-        print('Mon: 6am - 1am')
-        print('Tue: 6am - 1am')
-        print('Wed: 6am - 1am')
-        print('Thu: 6am - 1am')
-        print('Fri: 6am - 11pm')
-        print('Sat: 8am - 11pm')
-
+    audio = audio + '<br>'
+    if 'hours' in audio or 'close' in audio:
+        return audio + get_gym_schedule()
+        
     if 'open' in audio or 'closed' in audio:
         time_info = datetime.today()
         time = str(datetime.now().time())
@@ -45,33 +40,41 @@ def gym_info(audio):
                 hours = hours + char
             else:
                 break
-
         hours = int(hours)
+        result = gym_open_or_closed(hours, day_of_week)
+        
+        result_text = " Open" if result else " Closed"
+        return audio + "<br> Gym" + result_text
+
+def get_gym_schedule():
+	return 'Sun: 8am - 1am<br>' + 'Mon: 6am - 1am<br>' + 'Tue: 6am - 1am<br>' + 'Wed: 6am - 1am<br>' + 'Thu: 6am - 1am<br>' + 'Fri: 6am - 11pm<br>' + 'Sat: 8am - 11pm<br>'
+
+def gym_open_or_closed(hours, day_of_week):
         if(day_of_week < 6 and hours >= 6):
             if(day_of_week == 4 and hours > 23):
-                print("Gym closed!")
+                return False
             else:
-                print("Gym open!")
+                return True
         elif(day_of_week > 4 and hours >= 8):
             if(day_of_week == 5 and hours > 23):
-                print("Gym closed!")
+                return False
             else:
-                print("Gym open!")
+                return True
         else:
-            print("Gym closed")
+            return False
 
 def parse_audio(audio):
     if 'football' in audio:
         print("true")
         print(get_football_info(audio))
     if 'rsf' in audio or 'gym' in audio:
-        gym_info(audio)
+        return gym_info(audio)
 
 def run():
     transcribed_audio = get_audio().lower()
     print(transcribed_audio)
-    parse_audio(transcribed_audio)
-    return transcribed_audio
+    transcribed_audio = parse_audio(transcribed_audio.capitalize())
+    return transcribed_audio 
 
 
 
