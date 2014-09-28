@@ -60,6 +60,16 @@ def bear_trasit(audio):
     if 'bear' in audio or 'walk' in audio:
         return 'Contact Bear Walk at 510 642 9255'
 
+def next_football_game(audio):
+    """ Listens to audio, and returns the next CAL football game"""
+    if 'football' in audio or 'game' in audio:
+        return 'Our next football game is on October 4 at Washington State at 7 30 P M'
+
+def library_hours(audio):
+    """ Listens to audio, and returns if the library is open"""
+    if 'library' in audio or 'today' in audio:
+        return 'Mofitt closes at 10 P M'
+
 
 def get_gym_schedule():
     """ Returns the string containing the GYM week schedule """
@@ -98,6 +108,11 @@ def parse_audio(audio):
         return gym_info(audio)
     if 'bear' in audio or 'walk' in audio:
         return bear_walk(audio)
+    if 'football' in audio or 'game' in audio:
+        return next_football_game(audio)
+    if 'library' in audio:
+        return library_hours(audio)
+    
 
 def answer(audio):
     return parse_audio(audio) 
