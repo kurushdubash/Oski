@@ -37,12 +37,16 @@
         	<br><br></br></br>
 			<h1>{{ oski_answer }}</h1>
             <audio controls autoplay>
-                <source src=speak type="audio/mpeg">
+                <source src={{ speak }} type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
-            <h2>{{ speak }}</h2>
+            <!-- <h2>{{ speak }}</h2> -->
 
-
+<style>
+ audio {
+    display:none;
+    }
+</style>
         </br><br></br></br>
         <p> Oski is built by Kurush Dubash and Hassaan Shakeel. <br><br>
             ENJOY! </br></br> </p>

@@ -64,10 +64,12 @@ def gym_open_or_closed(hours, day_of_week):
 
 def text_to_voice_url(answer_to_say):
 	speak = ''
-	for word in answer_to_say:
-		speak = speak + word + '%20'
-	return 'http://tts-api.com/tts.mp3?q=' + speak[:len(speak) - 3]
-
+	for letter in answer_to_say:
+		if(letter == ' '):
+			speak = speak +'%20'
+		else:
+			speak = speak + letter
+	return 'http://tts-api.com/tts.mp3?q=' + speak
 
 def parse_audio(audio):
     if 'football' in audio:
