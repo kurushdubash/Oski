@@ -38,19 +38,22 @@
             <input type="submit" />
         </form>
         <br></br>
-        <form action='/api/StartRecording' method="POST">
+<!--         <form action='/api/StartRecording' method="POST">
             <button onclick = "start_Recording()">Ask Oski Now! </button>
-        </form>
+        </form> -->
 
-<div id="transcript"> </div>
+
+<h1><div id="transcript"> </div></h1>
 <p>&nbsp;</p>
+<div id="answer"> </div>
 <div id="instructions">&nbsp;</div>
 <p id="controls">
-    <form action='/api/StartRecording' method="POST">
+    
             <button onclick = "start_Recording()" id="start_button">Ask Oski Now2! </button>
-        </form>
+    
     <!-- <button id="start_button">Click to Start</button> -->
 </p>
+
 
 
 
@@ -108,6 +111,12 @@
                 // update the web page
                 if(final_transcript.length > 0) {
                     $('#transcript').html(final_transcript);
+                    $.post("/api/GetQuestion",
+                        JSON.stringify({'data': final_transcript}),
+                        function( data ) {
+                            $('#answer').html(data);
+                        })
+                    //$.post("/api/StartRecording")
                 }
             };
 
