@@ -16,8 +16,8 @@ def receive_cheep():
 def receive_recording_cue():
 	print(request.form)
 	transcribed_audio = get_audio().capitalize()
-	answer = answer(transcribed_audio)
-	return render_template('oski_answer.html', name=transcribed_audio, oski_answer=answer)
+	found_answer = answer(transcribed_audio)
+	return render_template('oski_answer.html', name=transcribed_audio, oski_answer=found_answer)
 
 if __name__ == "__main__":
 	app.run(debug=True)

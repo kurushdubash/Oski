@@ -5,7 +5,7 @@ from datetime import datetime
 
 def get_audio():
     r = sr.Recognizer(language = "en-US", key = "AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw")
-    r.energy_threshold = 1200
+    r.energy_threshold = 1800
     r.pause_threshold = 0.5
     with sr.Microphone() as source:                # use the default microphone as the audio source
          print("Listening...")
