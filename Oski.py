@@ -13,6 +13,10 @@ def get_audio():
     try:
         print("Transcribing..")
         transcribed_audio = r.recognize(audio)   # recognize speech using Google Speech Recognition
+        if(transcribed_audio == ''):
+            print("Could not understand audio") # speech is unintelligible 
+            print("Trying again.")
+            return get_audio()
         return transcribed_audio
     except LookupError:                            
         print("Could not understand audio") # speech is unintelligible 
@@ -26,10 +30,10 @@ def get_football_info(audio):
     return football_dict
 
 def gym_info(audio):
-    if 'hours' in audio or 'close' in audio:
+    if 'hours' in audio or ('when' in audio and 'close' in audio):
         return get_gym_schedule()
 
-    if 'open' in audio or 'closed' in audio:
+    if 'open' in audio or 'closed' in audio or 'close' in audio:
         time_info = datetime.today()
         time = str(datetime.now().time())
         day_of_week = time_info.weekday()
@@ -46,7 +50,7 @@ def gym_info(audio):
         return "The Gym is" + result_text
 
 def get_gym_schedule():
-	return 'Sun: 8am - 1am<br>' + 'Mon: 6am - 1am<br>' + 'Tue: 6am - 1am<br>' + 'Wed: 6am - 1am<br>' + 'Thu: 6am - 1am<br>' + 'Fri: 6am - 11pm<br>' + 'Sat: 8am - 11pm<br>'
+	return 'Sun: 8am - 1am\n' + 'Mon: 6am - 1am\n' + 'Tue: 6am - 1am\n' + 'Wed: 6am - 1am\n' + 'Thu: 6am - 1am\n' + 'Fri: 6am - 11pm\n' + 'Sat: 8am - 11pm\n'
 
 def gym_open_or_closed(hours, day_of_week):
         if(day_of_week < 6 and hours >= 6):

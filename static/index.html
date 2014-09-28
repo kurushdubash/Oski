@@ -42,12 +42,12 @@
             <button onclick = "start_Recording()">Ask Oski Now! </button>
         </form>
 
-<div id="transcript">&nbsp;</div>
+<div id="transcript"> </div>
 <p>&nbsp;</p>
 <div id="instructions">&nbsp;</div>
 <p id="controls">
     <form action='/api/StartRecording' method="POST">
-            <button onclick = "start_Recording()" id="start_button">Ask Oski Now! </button>
+            <button onclick = "start_Recording()" id="start_button">Ask Oski Now2! </button>
         </form>
     <!-- <button id="start_button">Click to Start</button> -->
 </p>
@@ -117,6 +117,7 @@
 
                 if (recognizing) {
                     recognition.stop();
+                    // myFunction('test');
                     $('#start_button').html('Click to Start Again');
                     recognizing = false;
                 } else {
@@ -129,7 +130,11 @@
                     $('#start_button').html('waiting');
                     $('#transcript').html('&nbsp;');
                 }
-            });
+            }
+            // function myFunction(string) {
+            //     start_Recording(string)             // the function returns the product of p1 and p2
+            // }
+            );
         }
     });
 
