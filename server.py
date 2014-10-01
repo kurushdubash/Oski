@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 from Oski import *
+import os
 app = Flask(__name__)
 
 answer_output = ''
@@ -7,6 +8,11 @@ answer_output = ''
 @app.route("/")
 def hello():
 	return app.send_static_file('index.html')
+
+@app.route('/<path:path>')
+def static_proxy(path):
+    # send_static_file will guess the correct MIME type
+    return app.send_static_file(os.path.join('jcss', path))
 
 @app.route("/api/ReadTextInput", methods=["POST"])
 def receive_cheep():

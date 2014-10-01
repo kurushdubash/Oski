@@ -4,7 +4,7 @@ html {
     padding: 100px 0;
     text-align: center;
     color: #fff;
-    background: url(intro-bg.jpg) no-repeat bottom center scroll;
+    background: url(http://kurushdubash.com/Oski/intro-bg.jpg) no-repeat bottom center scroll;
     background-color: #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -23,7 +23,7 @@ h6 {
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 1000;
     letter-spacing: 10px;
-    color: #99FFFF;
+    color: #FFF;
 }
 
 p {
@@ -34,7 +34,7 @@ p {
    -webkit-stroke-width: 2px;
    -webkit-stroke-color: #FFFFFF;
    -webkit-fill-color: #FFFFFF;
-   text-shadow: 1px 0px 20px #99FFFF;
+   text-shadow: 1px 0px 20px white;
 }
 
 .intro {
@@ -46,7 +46,7 @@ p {
    -webkit-stroke-width: 7.3px;
    -webkit-stroke-color: #FFFFFF;
    -webkit-fill-color: #FFFFFF;
-   text-shadow: 1px 0px 20px yellow;
+   text-shadow: 1px 0px 20px white;
 
 }
 
@@ -67,7 +67,7 @@ p {
    -webkit-stroke-width: 5.3px;
    -webkit-stroke-color: #FFFFFF;
    -webkit-fill-color: #FFFFFF;
-   text-shadow: 1px 0px 20px yellow;
+   text-shadow: 1px 0px 20px white;
    -webkit-transition: width 0.3s; 
    transition: width 0.3s;
    -moz-transition: width 0.3s; 
@@ -290,14 +290,6 @@ p {
     -webkit-transition: background .3s ease-in-out;
     -moz-transition: background .3s ease-in-out;
     transition: background .3s ease-in-out;
-       -webkit-stroke-width: 5.3px;
-   -webkit-stroke-color: #FFFFFF;
-   -webkit-fill-color: #FFFFFF;
-   text-shadow: 1px 0px 20px #99FFFF;
-   -webkit-transition: width 0.3s; 
-   transition: width 0.3s;
-   -moz-transition: width 0.3s; 
-   -o-transition: width 0.3s; 
 
 }
 
@@ -310,7 +302,7 @@ p {
     -webkit-stroke-width: 5.3px;
    -webkit-stroke-color: #FFFFFF;
    -webkit-fill-color: #FFFFFF;
-   text-shadow: 1px 0px 20px yellow;
+   text-shadow: 1px 0px 20px white;
    -webkit-transition: width 0.3s; 
    transition: width 0.3s;
    -moz-transition: width 0.3s; 
