@@ -50,6 +50,7 @@ def gym_info(audio):
         
         result_text = " Open" if result else " Closed"
         return "The Gym is" + result_text
+    return get_gym_schedule()
 def bear_walk(audio):
     """ Listens to the audio, and returns the phone number of Bear Walk"""
     if 'bear' in audio or 'walk' in audio:
@@ -150,7 +151,7 @@ def parse_audio(audio):
         return get_date()
     if 'time' in audio:
         return get_time()
-    if 'Hey' in audio or 'oski' in audio:
+    if 'hey' in audio or 'oski' in audio:
         return hey_oski(audio)
     return 'I was no help'
 

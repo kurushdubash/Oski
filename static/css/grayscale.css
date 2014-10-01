@@ -31,7 +31,7 @@ h6 {
 }
 
 p {
-    margin: 0 0 25px;
+    margin: 0 0 -55px;
     font-size: 18px;
     line-height: 1.5;
 }
@@ -148,7 +148,7 @@ a:focus {
 
 .intro .intro-body {
     display: table-cell;
-    vertical-align: middle;
+    /*vertical-align: middle;*/
 }
 
 .intro .intro-body .brand-heading {
@@ -175,10 +175,11 @@ a:focus {
 }
 
 .btn-circle {
-    width: 70px;
-    height: 70px;
-    margin-top: 15px;
-    padding: 7px 16px;
+    vertical-align: middle;
+    width: 140px;
+    height: 90px;
+/*    margin-top: 15px;
+    padding: 7px 16px;*/
     border: 2px solid #fff;
     border-radius: 35px;
     font-size: 40px;
@@ -191,12 +192,14 @@ a:focus {
 
 .btn-circle:hover,
 .btn-circle:focus {
+    vertical-align: middle;
     outline: 0;
     color: #fff;
     background: rgba(255,255,255,.1);
 }
 
 .btn-circle i.animated {
+    vertical-align: middle;
     -webkit-transition-property: -webkit-transform;
     -webkit-transition-duration: 1s;
     -moz-transition-property: -moz-transform;
@@ -204,6 +207,7 @@ a:focus {
 }
 
 .btn-circle:hover i.animated {
+    vertical-align: middle;
     -webkit-animation-name: pulse;
     -moz-animation-name: pulse;
     -webkit-animation-duration: 1.5s;

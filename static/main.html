@@ -1,56 +1,48 @@
-
-<html lang="en">
-
+<html>
 <head>
-    <title>Oski - Your Bear-ific sidekick</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/grayscale.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+	   <!--  <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+<!--     <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+	For when offline -->
+
+<!-- 	<link rel="stylesheet" type="text/css" href="oski.css">
+    <link rel="stylesheet" type="text/css" href="goog1.css">
+    <link rel="stylesheet" type="text/css" href="goog2.css"> -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='oski.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='goog1.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='goog2.css') }}">
 
 
-
-
-</head>
-
-    <!-- Intro Header -->
+<body>
     <header class="intro">
         <div class="intro-body">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <h1 class="brand-heading">Oski</h1>
-                        <p class="intro-text">An intelligent Berkeley personal assistant</p>
+                        <h1 class="brand-heading buzz">Oski</h1>
+                        <p class="intro-text grow">An intelligent Berkeley personal assistant.</p>
+                        <h1><div id="transcript"> </div></h1>
+							<p>&nbsp;</p>
+							<div id="answer"> </div>
+							<div id="instructions">&nbsp;</div>
+							<p id="controls">
+							            <input type="submit" id="start_button" class="btn btn-circle" value="Ask" />
+							            <!-- <button onclick = "start_Recording()" class="btn btn-circle page-scroll" id="start_button">Ask</button -->
+							    
+							    <!-- <button id="start_button">Click to Start</button> -->
+							</p>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
-
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
 <center>
 
 
-<h1><div id="transcript"> </div></h1>
-<p>&nbsp;</p>
-<div id="answer"> </div>
-<div id="instructions">&nbsp;</div>
-<p id="controls">
-            <input type="submit" id="start_button" class="btn btn-circle page-scroll" class="styled-button-9" value="Ask Oski Now!" />
-            <button onclick = "start_Recording()" class="btn btn-circle page-scroll" id="start_button">Ask</button>
-    
-    <!-- <button id="start_button">Click to Start</button> -->
-</p>
+
 <script type="text/javascript">
 
     var final_transcript = '';
@@ -143,7 +135,8 @@
 
 </script>
 
-
 </body>
 
+
+</head>
 </html>

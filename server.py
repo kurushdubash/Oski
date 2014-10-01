@@ -32,8 +32,8 @@ def receive_recording_cue():
 		transcribed_audio = get_audio.capitalize()
 	print(transcribed_audio)
 	found_answer = answer(transcribed_audio)
-	url_speech = text_to_voice_url(found_answer)
 	print(found_answer)
+	url_speech = text_to_voice_url(found_answer)
 	return render_template('oski_answer.html', name=transcribed_audio, oski_answer=found_answer, speak=url_speech)
 
 if __name__ == "__main__":
