@@ -1,5 +1,6 @@
 <html>
 <body>
+<center>
 <h1> Oski </h1>
 
 <h5>
