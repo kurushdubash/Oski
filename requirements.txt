@@ -1,2 +1,4 @@
-pyaudio
 requests==2.4.1
+Flask==0.10.1
+PyAudio==0.2.8
+
