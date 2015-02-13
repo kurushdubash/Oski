@@ -1,7 +1,10 @@
 # import speech_recognition as sr
 import requests
 from datetime import datetime
+# import wit
 
+wit_access_tokem = "DZOBQMEV7MX65IUV4VQGS4HQCUTFAWRJ"
+weather_api = '2ffd40362f6c4bdd050c1ad48eaa7891cb1e4890'
 
 # def get_audio():
 #     r = sr.Recognizer(language = "en-US", key = "AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw")
@@ -30,7 +33,7 @@ def get_football_info(audio):
     football_dict = football_data.json()
     return football_dict
 
-def gym_info(audio):
+
     """ Listens to audio, and returns either the Gym Schedule, or whether the Gym is open or closed """
     if 'hours' in audio or ('when' in audio and 'close' in audio):
         return get_gym_schedule()
@@ -130,6 +133,62 @@ def hey_oski(audio):
         return "Hey Kurush, you're an idiot"
     return 'h'
 
+# def get_weather(time, highlow, date = ""):
+#     zip_code = 94709
+#     weather_url = 'http://api.worldweatheronline.com/free/v1/weather.ashx?q=' + str(zip_code) + '&format=json&num_of_days=5&key=' + str(weather_api)
+#     weather_data = requests.get(weather_url)
+#     weather_json = weather_data.json()
+#     if time == "today":
+#         if highlow == "high":
+#             forcast = weather_josn['data']['weather'][0]['tempMaxF']
+#             return "The high for today is", str(forcast)
+#         elif highlow == 'low':
+#             forcast = weather_josn['data']['weather'][0]['temoMinF']
+#             return "The high for today is", str(forcast)
+#         else:
+#             forcastmin = weather_josn['data']['weather'][0]['temoMinF']
+#             forcastmax = weather_josn['data']['weather'][0]['tempMaxF']
+#             return "It is going to be between", forcastmin, "to", forcastmax, "degrees Farenheit today"
+#     elif date != "":
+#             forcastmin = weather_josn['data']['weather'][date]['temoMinF']# weather_josn['data']['current_condidions'][0]['temp_F']
+#             forcastmax = weather_josn['data']['weather'][date]['tempMaxF']
+#             return "It is going to be between", forcastmin, "to", forcastmax, "degrees Farenheit on", date  
+#     else:
+#         forcast = weather_josn['data']['current_condidions'][0]['temp_F']
+#         return "It is", forcast, "degrees Farenheit right now" 
+def get_weather(stringer):
+    zipcode = 94709
+    weather_url = 'http://api.worldweatheronline.com/free/v1/weather.ashx?q=' + str(zip_code) + '&format=json&num_of_days=5&key=' + str(weather_api)
+    weather_data = requests.get(weather_url)
+    weather_json = weather_data.json()
+    time_data = datetime.now().date().isoformat()
+    year = date_obj[0:4]
+    month = date_obj[5:7]
+    day = date_obj[8:10]
+
+    if "today" in stringer:
+        if "high" in stringer:
+            forcast = weather_josn['data']['weather'][0]['tempMaxF']
+            return "The high for today is", str(forcast)
+        elif "low" in stringer:
+            forcast = weather_josn['data']['weather'][0]['tempMinF']
+            return "The low for today is", str(forcast)
+        else:
+            forcastmin = weather_josn['data']['weather'][0]['temoMinF']
+            forcastmax = weather_josn['data']['weather'][0]['tempMaxF']
+            return "It is going to be between", forcastmin, "to", forcastmax, "degrees Farenheit today"
+    elif "tomorrow" in stringer:
+        if day < 30:
+            nextDay = day + 1
+        else: 
+            nextDay = 1
+            month = month + 1
+        tomorrowDate = "{0}-{1}-{2}".format(year, month, date)
+
+        forcastmin = weather_josn['data']['weather'][str(time_data)]['temoMinF']
+        forcastmax = weather_josn['data']['weather'][str(time_data)]['tempMaxF']
+        return "It is going to be between", forcastmin, "to", forcastmax, "degrees Farenheit today"
+
 def text_to_voice_url(answer_to_say):
     speak = ''
     for letter in answer_to_say:
@@ -140,6 +199,9 @@ def text_to_voice_url(answer_to_say):
     return 'http://tts-api.com/tts.mp3?q=' + speak
 
 def parse_audio(audio):
+    wit.init()
+    response = wit.text_query(audio, wit_access_tokem)
+
     if 'rsf' in audio or 'gym' in audio:
         return gym_info(audio)
     if 'bear' in audio or 'walk' in audio:
