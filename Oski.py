@@ -188,6 +188,10 @@ def get_weather(stringer):
         forcastmin = weather_josn['data']['weather'][str(time_data)]['temoMinF']
         forcastmax = weather_josn['data']['weather'][str(time_data)]['tempMaxF']
         return "It is going to be between", forcastmin, "to", forcastmax, "degrees Farenheit today"
+    else:
+        forcastmin = weather_josn['data']['weather'][0]['temoMinF']
+        forcastmax = weather_josn['data']['weather'][0]['tempMaxF']
+        return "It is going to be between", forcastmin, "to", forcastmax, "degrees Farenheit today"   
 
 def text_to_voice_url(answer_to_say):
     speak = ''
@@ -216,7 +220,7 @@ def parse_audio(audio):
         return get_time()
     if 'hey' in audio or 'oski' in audio:
         return hey_oski(audio)
-    if "weather" or "hot" or "cold" in audio:
+    if "weather" in audio or "hot" in audio or "cold" in audio:
         return get_weather(audio)
     return 'I was no help'
 
