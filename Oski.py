@@ -100,8 +100,9 @@ def gym_open_or_closed(hours, day_of_week):
         return False
 
 def get_date():
-    time_info = datetime.now().date().isoformat()
-    return str(time_info)  # YYYY-MM-DD
+    date_info = str(datetime.now().date().isoformat())
+
+    return "today is the", date_info[8:9], "of", date_info[5:6], "in", date_info[0:4]  # YYYY-MM-DD
 
 def get_time():
     time_info = datetime.now().time().isoformat();
@@ -174,8 +175,8 @@ def get_weather(audio):
             nextDay = day + 1
         else: 
             nextDay = 1
-            month = month + 1
-        tomorrowDate = "{0}-{1}-{2}".format(year, month, date)
+            month1 = month + 1
+        tomorrowDate = "{0}-{1}-{2}".format(year, month1, nextDay)
 
         forcastmin = weather_josn['data']['weather'][str(time_data)]['tempMinF']
         forcastmax = weather_josn['data']['weather'][str(time_data)]['tempMaxF']
@@ -204,7 +205,7 @@ def parse_audio(audio):
         return next_football_game(audio)
     if 'library' in audio:
         return library_hours(audio)
-    if 'date' in audio or 'today' in audio:
+    if 'date' in audio:
         return get_date()
     if 'time' in audio:
         return get_time()
