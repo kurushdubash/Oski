@@ -203,8 +203,8 @@ def text_to_voice_url(answer_to_say):
     return 'http://tts-api.com/tts.mp3?q=' + speak
 
 def parse_audio(audio):
-    wit.init()
-    response = wit.text_query(audio, wit_access_tokem)
+    # wit.init()
+    # response = wit.text_query(audio, wit_access_tokem)
 
     if 'rsf' in audio or 'gym' in audio:
         return gym_info(audio)
