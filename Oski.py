@@ -181,9 +181,8 @@ def get_weather(audio):
         forcastmax = weather_josn['data']['weather'][str(time_data)]['tempMaxF']
         return "It is going to be between", forcastmin, "to", forcastmax, "degrees Farenheit today"
     else:
-        forcastmin = weather_josn['data']['weather'][0]['tempMinF']
-        forcastmax = weather_josn['data']['weather'][0]['tempMaxF']
-        return "It is going to be between", forcastmin, "to", forcastmax, "degrees Farenheit today" 
+        forcast = weather_josn['data']['current_condition'][0]['temp_F']
+        return "It is", str(forcast), "degrees right now"
 
 def text_to_voice_url(answer_to_say):
     speak = ''
