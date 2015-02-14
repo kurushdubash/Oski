@@ -211,8 +211,8 @@ def parse_audio(audio):
         return get_time()
     if 'hey' in audio or 'oski' in audio:
         return hey_oski(audio)
-    # if "weather" in audio or "hot" in audio or "cold" in audio:
-    #     return get_weather(audio)
+    if "weather" in audio or "hot" in audio or "cold" in audio:
+        return get_weather(audio)
     return 'I was no help'
 
 def answer(audio):
