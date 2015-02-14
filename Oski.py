@@ -146,42 +146,45 @@ def hey_oski(audio):
 #     else:
 #         forcast = weather_josn['data']['current_condidions'][0]['temp_F']
 #         return "It is", forcast, "degrees Farenheit right now" 
-def get_weather(audio):
-    zipcode = 94709
-    weather_url = 'http://api.worldweatheronline.com/free/v1/weather.ashx?q=' + str(zip_code) + '&format=json&num_of_days=5&key=' + str(weather_api)
-    weather_data = requests.get(weather_url)
-    weather_json = weather_data.json()
-    time_data = datetime.now().date().isoformat()
-    year = date_obj[0:4]
-    month = date_obj[5:7]
-    day = date_obj[8:10]
 
-    if "today" in audio:
-        if "high" in audio:
-            forcast = weather_josn['data']['weather'][0]['tempMaxF']
-            return "The high for today is", str(forcast)
-        elif "low" in audio:
-            forcast = weather_josn['data']['weather'][0]['tempMinF']
-            return "The low for today is", str(forcast)
-        else:
-            forcastmin = weather_josn['data']['weather'][0]['temoMinF']
-            forcastmax = weather_josn['data']['weather'][0]['tempMaxF']
-            return "It is going to be between", forcastmin, "to", forcastmax, "degrees Farenheit today"
-    elif "tomorrow" in audio:
-        if day < 30:
-            nextDay = day + 1
-        else: 
-            nextDay = 1
-            month = month + 1
-        tomorrowDate = "{0}-{1}-{2}".format(year, month, date)
 
-        forcastmin = weather_josn['data']['weather'][str(time_data)]['temoMinF']
-        forcastmax = weather_josn['data']['weather'][str(time_data)]['tempMaxF']
-        return "It is going to be between", forcastmin, "to", forcastmax, "degrees Farenheit today"
-    else:
-        forcastmin = weather_josn['data']['weather'][0]['temoMinF']
-        forcastmax = weather_josn['data']['weather'][0]['tempMaxF']
-        return "It is going to be between", forcastmin, "to", forcastmax, "degrees Farenheit today"   
+
+# def get_weather(audio):
+#     zipcode = 94709
+#     weather_url = 'http://api.worldweatheronline.com/free/v1/weather.ashx?q=' + str(zip_code) + '&format=json&num_of_days=5&key=' + str(weather_api)
+#     weather_data = requests.get(weather_url)
+#     weather_json = weather_data.json()
+#     time_data = datetime.now().date().isoformat()
+#     year = date_obj[0:4]
+#     month = date_obj[5:7]
+#     day = date_obj[8:10]
+
+#     if "today" in audio:
+#         if "high" in audio:
+#             forcast = weather_josn['data']['weather'][0]['tempMaxF']
+#             return "The high for today is", str(forcast)
+#         elif "low" in audio:
+#             forcast = weather_josn['data']['weather'][0]['tempMinF']
+#             return "The low for today is", str(forcast)
+#         else:
+#             forcastmin = weather_josn['data']['weather'][0]['temoMinF']
+#             forcastmax = weather_josn['data']['weather'][0]['tempMaxF']
+#             return "It is going to be between", forcastmin, "to", forcastmax, "degrees Farenheit today"
+#     elif "tomorrow" in audio:
+#         if day < 30:
+#             nextDay = day + 1
+#         else: 
+#             nextDay = 1
+#             month = month + 1
+#         tomorrowDate = "{0}-{1}-{2}".format(year, month, date)
+
+#         forcastmin = weather_josn['data']['weather'][str(time_data)]['temoMinF']
+#         forcastmax = weather_josn['data']['weather'][str(time_data)]['tempMaxF']
+#         return "It is going to be between", forcastmin, "to", forcastmax, "degrees Farenheit today"
+#     else:
+#         forcastmin = weather_josn['data']['weather'][0]['temoMinF']
+#         forcastmax = weather_josn['data']['weather'][0]['tempMaxF']
+#         return "It is going to be between", forcastmin, "to", forcastmax, "degrees Farenheit today"   
 
 def text_to_voice_url(answer_to_say):
     speak = ''
@@ -209,12 +212,13 @@ def parse_audio(audio):
         return get_time()
     if 'hey' in audio or 'oski' in audio:
         return hey_oski(audio)
-    if "weather" in audio or "hot" in audio or "cold" in audio:
-        return get_weather(audio)
+    # if "weather" in audio or "hot" in audio or "cold" in audio:
+    #     return get_weather(audio)
     return 'I was no help'
 
 def answer(audio):
     return parse_audio(audio) 
+
 
 
 
