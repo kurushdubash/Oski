@@ -76,6 +76,7 @@
                 recognizing = true;
                 $('#instructions').html('Listening...');
                 $('#start_button').html('Transcribe');
+                $('#instructions').html('');  // I added this 02/13/2015 
             };
 
             recognition.onerror = function(event) {

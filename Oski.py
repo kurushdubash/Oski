@@ -3,7 +3,7 @@ import requests
 from datetime import datetime
 # import wit
 
-wit_access_tokem = "DZOBQMEV7MX65IUV4VQGS4HQCUTFAWRJ"
+# wit_access_tokem = "DZOBQMEV7MX65IUV4VQGS4HQCUTFAWRJ"
 weather_api = '2ffd40362f6c4bdd050c1ad48eaa7891cb1e4890'
 
 # def get_audio():
@@ -33,7 +33,7 @@ def get_football_info(audio):
     football_dict = football_data.json()
     return football_dict
 
-
+def gym_info(audio):
     """ Listens to audio, and returns either the Gym Schedule, or whether the Gym is open or closed """
     if 'hours' in audio or ('when' in audio and 'close' in audio):
         return get_gym_schedule()
@@ -100,38 +100,28 @@ def gym_open_or_closed(hours, day_of_week):
         return False
 
 def get_date():
-    time_info = datetime.today()
-    return time_info.strftime("%A %d. %B %Y")
+    time_info = datetime.now().date().isoformat()
+    return str(time_info)  # YYYY-MM-DD
 
 def get_time():
-    time_info = str(datetime.today());
-    for char in str(time_info):
-        if(char == ' '):
-            time_info = time_info[1:]
-            break
-        else:
-            time_info = time_info[1:]
-    hours = ''
-    for char in time_info:
-        if(char != ':'):
-            hours = hours + char
-            time_info = time_info[1:]
-        else:
-            break
-        if (int(hours) > 12):
-            hours = int(hours) - 12
-        minutes = ''
-        for char in time_info:
-            if(char != ':'):
-                minutes = minutes + char
-            else: 
-                break
-    return str(hours) + " " + minutes
+    time_info = datetime.now().time().isoformat();
+    hour = int(time_data[0:2])
+    minute = time_data[3:5]
+    light = 'AM'
+
+    if hour > 12:
+        hour = hour - 12
+        light = 'PM'
+    elif hour == 00:
+        hour = 12
+    hour = str(hour)
+    time = hour + ':' + minute + ' ' + light
+    return "it is ", time
 
 def hey_oski(audio):
     if 'hey' in audio or 'oski' in audio:
         return "Hey Kurush, you're an idiot"
-    return 'h'
+    return 'Stanford Sucks'
 
 # def get_weather(time, highlow, date = ""):
 #     zip_code = 94709
@@ -156,7 +146,7 @@ def hey_oski(audio):
 #     else:
 #         forcast = weather_josn['data']['current_condidions'][0]['temp_F']
 #         return "It is", forcast, "degrees Farenheit right now" 
-def get_weather(stringer):
+def get_weather(audio):
     zipcode = 94709
     weather_url = 'http://api.worldweatheronline.com/free/v1/weather.ashx?q=' + str(zip_code) + '&format=json&num_of_days=5&key=' + str(weather_api)
     weather_data = requests.get(weather_url)
@@ -166,18 +156,18 @@ def get_weather(stringer):
     month = date_obj[5:7]
     day = date_obj[8:10]
 
-    if "today" in stringer:
-        if "high" in stringer:
+    if "today" in audio:
+        if "high" in audio:
             forcast = weather_josn['data']['weather'][0]['tempMaxF']
             return "The high for today is", str(forcast)
-        elif "low" in stringer:
+        elif "low" in audio:
             forcast = weather_josn['data']['weather'][0]['tempMinF']
             return "The low for today is", str(forcast)
         else:
             forcastmin = weather_josn['data']['weather'][0]['temoMinF']
             forcastmax = weather_josn['data']['weather'][0]['tempMaxF']
             return "It is going to be between", forcastmin, "to", forcastmax, "degrees Farenheit today"
-    elif "tomorrow" in stringer:
+    elif "tomorrow" in audio:
         if day < 30:
             nextDay = day + 1
         else: 
@@ -205,7 +195,6 @@ def text_to_voice_url(answer_to_say):
 def parse_audio(audio):
     # wit.init()
     # response = wit.text_query(audio, wit_access_tokem)
-
     if 'rsf' in audio or 'gym' in audio:
         return gym_info(audio)
     if 'bear' in audio or 'walk' in audio:
