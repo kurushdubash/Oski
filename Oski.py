@@ -151,8 +151,8 @@ def get_weather(audio):
             month = month + 1
         tomorrowDate = "{0}-{1}-{2}".format(year, month, nextDay)
 
-        forcastmin = weather_josn['data']['weather'][str(time_data)]['tempMinF']
-        forcastmax = weather_josn['data']['weather'][str(time_data)]['tempMaxF']
+        forcastmin = weather_josn['data']['weather'][str(tomorrowDate)]['tempMinF']
+        forcastmax = weather_josn['data']['weather'][str(tomorrowDate)]['tempMaxF']
         return "It is going to be between {0} to {1} degrees fahrenheit tomorrow".format(forcastmin, forcastmax)
     else:
         forcast = weather_josn['data']['current_condition'][0]['temp_F']
