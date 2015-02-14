@@ -68,7 +68,7 @@
             // Create the recognition object and define four event handlers (onstart, onerror, onend, onresult)
 
             var recognition = new webkitSpeechRecognition();
-            recognition.continuous = true;         // keep processing input until stopped
+            recognition.continuous = true;         // stop processing input when button is pressed
             recognition.interimResults = true;     // show interim results
             recognition.lang = language;           // specify the language
 
@@ -76,7 +76,8 @@
                 recognizing = true;
                 $('#instructions').html('Listening...');
                 $('#start_button').html('Transcribe');
-                // add the new updated text on the button to "GO" here. (i dont know how to do it yet)
+                var elem = document.getElementById("start_button");
+                if (elem.value == "Ask") elem.value = "Go!";
             };
 
             recognition.onerror = function(event) {
@@ -85,11 +86,14 @@
 
             recognition.onend = function() {
                 recognizing = false;
+                // var elem = document.getElementById("start_button");
+                // if (elem.value == "Go!") elem.value = "Ask!";
             };
 
             recognition.onresult = function(event) {
                 var interim_transcript = '';
-
+                var elem = document.getElementById("start_button");
+                if (elem.value == "Ask") elem.value = "Go!";
                 // Assemble the transcript from the array of results
                 for (var i = event.resultIndex; i < event.results.length; ++i) {
                     if (event.results[i].isFinal) {
@@ -105,6 +109,8 @@
                 // update the web page
                 if(final_transcript.length > 0) {
                     $('#transcript').html(final_transcript);
+                    var elem = document.getElementById("start_button");
+                    if (elem.value == "Go!") elem.value = "Ask";
                     $.post("/api/GetQuestion",
                         JSON.stringify({'data': final_transcript}),
                         function( data ) {
@@ -129,9 +135,9 @@
 
                     // Request access to the User's microphone and Start recognizing voice input
                     recognition.start();
-
                     $('#instructions').html('Allow the browser to use your Microphone');
                     $('#start_button').html('Wait');
+
                     $('#transcript').html('&nbsp;');
                 }
             }

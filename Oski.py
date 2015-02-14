@@ -101,11 +101,11 @@ def gym_open_or_closed(hours, day_of_week):
 
 def get_date():
     date_info = str(datetime.now().date().isoformat())
-
-    return "today is the", date_info[8:9], "of", date_info[5:6], "in", date_info[0:4]  # YYYY-MM-DD
+    stringer = "today is the {0} of {1} in {2}".format(date_info[8:9], date_info[5:6], date_info[0:4])
+    return stringer  # YYYY-MM-DD
 
 def get_time():
-    time_info = datetime.now().time().isoformat();
+    time_data = datetime.now().time().isoformat();
     hour = int(time_data[0:2])
     minute = time_data[3:5]
     light = 'AM'
@@ -115,39 +115,12 @@ def get_time():
         light = 'PM'
     elif hour == 00:
         hour = 12
-    hour = str(hour)
-    time = hour + ':' + minute + ' ' + light
-    return "it is ", time
+    return "it is {0}:{1} {2}".format(str(hour), str(minute), light)
 
 def hey_oski(audio):
     if 'hey' in audio or 'oski' in audio:
         return "Hey Kurush, you're an idiot"
     return 'Stanford Sucks'
-
-# def get_weather(time, highlow, date = ""):
-#     zip_code = 94709
-#     weather_url = 'http://api.worldweatheronline.com/free/v1/weather.ashx?q=' + str(zip_code) + '&format=json&num_of_days=5&key=' + str(weather_api)
-#     weather_data = requests.get(weather_url)
-#     weather_json = weather_data.json()
-#     if time == "today":
-#         if highlow == "high":
-#             forcast = weather_josn['data']['weather'][0]['tempMaxF']
-#             return "The high for today is", str(forcast)
-#         elif highlow == 'low':
-#             forcast = weather_josn['data']['weather'][0]['temoMinF']
-#             return "The high for today is", str(forcast)
-#         else:
-#             forcastmin = weather_josn['data']['weather'][0]['temoMinF']
-#             forcastmax = weather_josn['data']['weather'][0]['tempMaxF']
-#             return "It is going to be between", forcastmin, "to", forcastmax, "degrees Farenheit today"
-#     elif date != "":
-#             forcastmin = weather_josn['data']['weather'][date]['temoMinF']# weather_josn['data']['current_condidions'][0]['temp_F']
-#             forcastmax = weather_josn['data']['weather'][date]['tempMaxF']
-#             return "It is going to be between", forcastmin, "to", forcastmax, "degrees Farenheit on", date  
-#     else:
-#         forcast = weather_josn['data']['current_condidions'][0]['temp_F']
-#         return "It is", forcast, "degrees Farenheit right now" 
-
 
 def get_weather(audio):
     zip_code = 94709
@@ -162,14 +135,14 @@ def get_weather(audio):
     if "today" in audio:
         if "high" in audio:
             forcast = weather_josn['data']['weather'][0]['tempMaxF']
-            return "The high for today is", str(forcast)
+            return "The high for today is {0}".format(str(forcast))
         elif "low" in audio:
             forcast = weather_josn['data']['weather'][0]['tempMinF']
-            return "The low for today is", str(forcast)
+            return "The low for today is {0}".format(str(forcast))
         else:
             forcastmin = weather_josn['data']['weather'][0]['tempMinF']
             forcastmax = weather_josn['data']['weather'][0]['tempMaxF']
-            return "It is going to be between", forcastmin, "to", forcastmax, "degrees Farenheit today"
+            return "It is going to be between {0} to {1} degrees fahrenheit today".format(forcastmin, forcastmax)
     elif "tomorrow" in audio:
         if day < 30:
             nextDay = day + 1
@@ -180,10 +153,10 @@ def get_weather(audio):
 
         forcastmin = weather_josn['data']['weather'][str(time_data)]['tempMinF']
         forcastmax = weather_josn['data']['weather'][str(time_data)]['tempMaxF']
-        return "It is going to be between", forcastmin, "to", forcastmax, "degrees Farenheit today"
+        return "It is going to be between {0} to {1} degrees fahrenheit tomorrow".format(forcastmin, forcastmax)
     else:
         forcast = weather_josn['data']['current_condition'][0]['temp_F']
-        return "It is", str(forcast), "degrees right now"
+        return "It is {0} degrees right now".format(str(forcast))
 
 def text_to_voice_url(answer_to_say):
     speak = ''
