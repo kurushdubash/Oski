@@ -149,7 +149,7 @@ def get_weather(audio):
         else: 
             nextDay = 1
             month = month + 1
-        tomorrowDate = "{0}-{1}-{2}".format(year, month1, nextDay)
+        tomorrowDate = "{0}-{1}-{2}".format(year, month, nextDay)
 
         forcastmin = weather_josn['data']['weather'][str(time_data)]['tempMinF']
         forcastmax = weather_josn['data']['weather'][str(time_data)]['tempMaxF']
