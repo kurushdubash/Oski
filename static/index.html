@@ -76,8 +76,6 @@
 
             recognition.onend = function() {
                 recognizing = false;
-                // var elem = document.getElementById("start_button");
-                // if (elem.value == "Go!") elem.value = "Ask!";
             };
 
             recognition.onresult = function(event) {
@@ -106,7 +104,6 @@
                         function( data ) {
                             $('#answer').html(data);
                         })
-                    //$.post("/api/StartRecording")
                 }
             };
 
