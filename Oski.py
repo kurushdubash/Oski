@@ -1,10 +1,12 @@
 # import speech_recognition as sr
 import requests
+from date_info import *
 from datetime import datetime
 # import wit
 
 # wit_access_tokem = "DZOBQMEV7MX65IUV4VQGS4HQCUTFAWRJ"
 weather_api = '2ffd40362f6c4bdd050c1ad48eaa7891cb1e4890'
+
 
 # def get_audio():
 #     r = sr.Recognizer(language = "en-US", key = "AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw")
@@ -99,23 +101,7 @@ def gym_open_or_closed(hours, day_of_week):
     else:
         return False
 
-def get_date():
-    date_info = str(datetime.now().date().isoformat())
-    stringer = "today is the {0} of {1} in {2}".format(date_info[8:9], date_info[5:6], date_info[0:4])
-    return stringer  # YYYY-MM-DD
 
-def get_time():
-    time_data = datetime.now().time().isoformat();
-    hour = int(time_data[0:2])
-    minute = time_data[3:5]
-    light = 'AM'
-
-    if hour > 12:
-        hour = hour - 12
-        light = 'PM'
-    elif hour == 00:
-        hour = 12
-    return "it is {0}:{1} {2}".format(str(hour), str(minute), light)
 
 def hey_oski(audio):
     if 'hey' in audio or 'oski' in audio:
