@@ -8,25 +8,25 @@ from datetime import datetime
 weather_api = '2ffd40362f6c4bdd050c1ad48eaa7891cb1e4890'
 
 
-def get_audio():
-    r = sr.Recognizer(language = "en-US", key = "AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw")
-    r.energy_threshold = 1800
-    r.pause_threshold = 0.5
-    with sr.Microphone() as source:                # use the default microphone as the audio source
-         print("Listening...")
-         audio = r.listen(source)                   # listen for the first phrase and extract it into audio data
-    try:
-        print("Transcribing..")
-        transcribed_audio = r.recognize(audio)   # recognize speech using Google Speech Recognition
-        if(transcribed_audio == ''):
-            print("Could not understand audio") # speech is unintelligible 
-            print("Trying again.")
-            return get_audio()
-        return transcribed_audio
-    except LookupError:                            
-        print("Could not understand audio") # speech is unintelligible 
-        print("Trying again.")
-        return get_audio()
+# def get_audio():
+#     r = sr.Recognizer(language = "en-US", key = "AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw")
+#     r.energy_threshold = 1800
+#     r.pause_threshold = 0.5
+#     with sr.Microphone() as source:                # use the default microphone as the audio source
+#          print("Listening...")
+#          audio = r.listen(source)                   # listen for the first phrase and extract it into audio data
+#     try:
+#         print("Transcribing..")
+#         transcribed_audio = r.recognize(audio)   # recognize speech using Google Speech Recognition
+#         if(transcribed_audio == ''):
+#             print("Could not understand audio") # speech is unintelligible 
+#             print("Trying again.")
+#             return get_audio()
+#         return transcribed_audio
+#     except LookupError:                            
+#         print("Could not understand audio") # speech is unintelligible 
+#         print("Trying again.")
+#         return get_audio()
 
 def get_football_info(audio):
     """ GETs College Football JSON data, and returns the dictionary """
@@ -41,17 +41,10 @@ def gym_info(audio):
         return get_gym_schedule()
 
     if 'open' in audio or 'closed' in audio or 'close' in audio:
-        time_info = datetime.today()
-        time = str(datetime.now().time())
-        day_of_week = time_info.weekday()
-        hours = ''
-        for char in time:
-            if(char != ':'):
-                hours = hours + char
-            else:
-                break
-        hours = int(hours)
-        result = gym_open_or_closed(hours, day_of_week)
+        time_obj = get_time_obj()
+        day_of_week = time_obj.weekday()
+
+        result = gym_open_or_closed(get_hours(time_obj), day_of_week)
         
         result_text = " Open" if result else " Closed"
         return "The Gym is" + result_text
@@ -85,8 +78,8 @@ def get_gym_schedule():
 def gym_open_or_closed(hours, day_of_week):
     """ Uses current time, and determines if the Gym is currently open or not.
     Returns True for open, and false for closed"""
-    print(hours)
-    print(day_of_week)
+    print(str(hours) + ' hours')
+    print(str(day_of_week) + ' day of the week')
     if(day_of_week < 6 and hours >= 6 and day_of_week != 5):
         if(day_of_week == 4 and hours > 23):
             return False
