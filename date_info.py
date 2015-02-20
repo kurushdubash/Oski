@@ -30,3 +30,11 @@ def get_hours(dateobj):
     hours = dateobj.time().__str__() #Gets time in string format of '14:14:18' | %H:%M:%S'
     hours = hours[:2]
     return int(hours)
+
+def get_time(dateobj):
+    hours = get_hours(dateobj)
+    mins = get_minutes(dateobj)
+    if hours > 12:
+        hours -= 12
+    time = str(hours) + ':' + str(mins)
+    return time
