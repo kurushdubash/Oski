@@ -1,4 +1,4 @@
-# import speech_recognition as sr
+import speech_recognition as sr
 import requests
 from date_info import *
 from datetime import datetime
@@ -8,25 +8,25 @@ from datetime import datetime
 weather_api = '2ffd40362f6c4bdd050c1ad48eaa7891cb1e4890'
 
 
-# def get_audio():
-#     r = sr.Recognizer(language = "en-US", key = "AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw")
-#     r.energy_threshold = 1800
-#     r.pause_threshold = 0.5
-#     with sr.Microphone() as source:                # use the default microphone as the audio source
-#          print("Listening...")
-#          audio = r.listen(source)                   # listen for the first phrase and extract it into audio data
-#     try:
-#         print("Transcribing..")
-#         transcribed_audio = r.recognize(audio)   # recognize speech using Google Speech Recognition
-#         if(transcribed_audio == ''):
-#             print("Could not understand audio") # speech is unintelligible 
-#             print("Trying again.")
-#             return get_audio()
-#         return transcribed_audio
-#     except LookupError:                            
-#         print("Could not understand audio") # speech is unintelligible 
-#         print("Trying again.")
-#         return get_audio()
+def get_audio():
+    r = sr.Recognizer(language = "en-US", key = "AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw")
+    r.energy_threshold = 1800
+    r.pause_threshold = 0.5
+    with sr.Microphone() as source:                # use the default microphone as the audio source
+         print("Listening...")
+         audio = r.listen(source)                   # listen for the first phrase and extract it into audio data
+    try:
+        print("Transcribing..")
+        transcribed_audio = r.recognize(audio)   # recognize speech using Google Speech Recognition
+        if(transcribed_audio == ''):
+            print("Could not understand audio") # speech is unintelligible 
+            print("Trying again.")
+            return get_audio()
+        return transcribed_audio
+    except LookupError:                            
+        print("Could not understand audio") # speech is unintelligible 
+        print("Trying again.")
+        return get_audio()
 
 def get_football_info(audio):
     """ GETs College Football JSON data, and returns the dictionary """

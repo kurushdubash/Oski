@@ -13,8 +13,8 @@ def get_time_obj():
         time_url = 'http://api.timezonedb.com/?zone=America/Los_Angeles&format=json&key=' + time_api;
         time_data = requests.get(time_url)
         time_data = time_data.json()
-        unix_time = time_data['timestamp']
-        datestr = datetime.utcfromtimestamp(unix_time).strftime('%Y-%m-%d %H:%M:%S')
+        unix_time = time_data['timestamp'] # Gets the time in a unix format, must convert
+        datestr = datetime.utcfromtimestamp(unix_time).strftime('%Y-%m-%d %H:%M:%S') # Converting to a datetime obj
         dateobj = datetime.strptime(datestr,'%Y-%m-%d %H:%M:%S')
         return dateobj
         
