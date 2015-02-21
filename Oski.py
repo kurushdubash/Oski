@@ -37,18 +37,18 @@ def get_football_info(audio):
 
 def gym_info(audio):
     """ Listens to audio, and returns either the Gym Schedule, or whether the Gym is open or closed """
-    if 'hours' in audio or ('when' in audio and 'close' in audio):
-        return get_gym_schedule()
+    time_obj = get_time_obj()
+    day_of_week = time_obj.weekday()
+
+    if 'hours' in audio or ('when' in audio and ('close' in audio or 'open' in audio)):
+        return get_gym_schedule(day_of_week)
 
     if 'open' in audio or 'closed' in audio or 'close' in audio:
-        time_obj = get_time_obj()
-        day_of_week = time_obj.weekday()
 
         result = gym_open_or_closed(get_hours(time_obj), day_of_week)
-        
         result_text = " Open" if result else " Closed"
         return "The Gym is" + result_text
-    return get_gym_schedule()
+    return get_gym_schedule(day_of_week)
     
 def bear_walk(audio):
     """ Listens to the audio, and returns the phone number of Bear Walk"""
@@ -71,9 +71,16 @@ def library_hours(audio):
         return 'Mofitt closes at 10 P M'
 
 
-def get_gym_schedule():
+def get_gym_schedule(day_of_week):
     """ Returns the string containing the GYM week schedule """
-    return 'Sun: 8am - 1am\n' + 'Mon: 6am - 1am\n' + 'Tue: 6am - 1am\n' + 'Wed: 6am - 1am\n' + 'Thu: 6am - 1am\n' + 'Fri: 6am - 11pm\n' + 'Sat: 8am - 11pm\n'
+    list_of_days = [('Monday', '6am to 1am'),
+                    ('Tuesday', '6am to 1am'),
+                    ('Wednesday', '6am to 1am'),
+                    ('Thursday', '6am to 1am'),
+                    ('Friday', '6am to 11pm'),
+                    ('Saturday', '8am to 11pm'),
+                    ('Sunday', '8am to 1m')]
+    return "The gym is open from {1} on {0}".format(list_of_days[day_of_week][0], list_of_days[day_of_week][1]) 
 
 def gym_open_or_closed(hours, day_of_week):
     """ Uses current time, and determines if the Gym is currently open or not.
@@ -93,8 +100,6 @@ def gym_open_or_closed(hours, day_of_week):
             return True
     else:
         return False
-
-
 
 def hey_oski(audio):
     if 'hey' in audio or 'oski' in audio:
